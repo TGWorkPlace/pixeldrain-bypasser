@@ -25,7 +25,7 @@ async def get_file_name(file_id: str) -> str:
     return file_id
 
 
-@Client.on_message(filters.text & filters.private)
+@Client.on_message(filters.text & filters.private & ~filters.command(["start"]))
 async def pixeldrain_handler(client: Client, message: Message):
     match = PIXELDRAIN_URL_RE.search(message.text)
     if not match:
@@ -36,6 +36,6 @@ async def pixeldrain_handler(client: Client, message: Message):
     file_name = await get_file_name(file_id)
 
     await message.reply(
-        f"File name: {file_name}\n"
-        f"Bypassed url: {bypassed_url}"
+        f"<b>File name: \n<blockquote>{file_name}</blockquote>\n</b>"
+        f"<b>Bypassed url: \n<blockquote>{bypassed_url}</blockquote></b>"
     )
