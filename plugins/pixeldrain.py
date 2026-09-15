@@ -50,10 +50,10 @@ async def pixeldrain_handler(client: Client, message: Message):
         f"<b>Bypassed url: \n<blockquote>{bypassed_url_2}</blockquote></b>"
     )
 
-    await message.reply(text)
+    await message.reply(text, disable_web_page_preview=True)
 
     if LOG_CHANNEL:
         try:
-            await client.send_message(LOG_CHANNEL, text)
+            await client.send_message(LOG_CHANNEL, text, disable_web_page_preview=True)
         except Exception:
             pass
